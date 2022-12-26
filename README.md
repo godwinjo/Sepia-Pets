@@ -42,5 +42,25 @@
             *func setValues(petDetails: PetDetails, image: UIImage?)  
                 - For setting values to label and image. we are calling this method from cell for indexpath.
                 
+** PetDetailsViewModel - View Model Class
+     - It has all the bussiness logic like getting URLRequest for loading WebView.
+     **Methods
+        * func getUrlRequest(contentUrl: String?)
+            - To get the URLRequest from the pet details content URL.
+            
+** PetDetailsViewController - View class
+        - For loading pet details from the given url. 
+        ** Properties
+                *webViewPetDetails: WKWebView
+                    - for loading content from url.
+                *viewModel: PetDetailsViewModeling
+                    - instance of a viewModel protocol, to get URL request from view model.
+       ** Methods
+               *func loadWebView() 
+                    - To load contemt in the webView.
+                
 ** PetListTests - XCTestCase
-            - It has all the positive and negative test caees of ViewModel.        
+            - It has all the positive and negative test caees of PetListViewModel.
+            
+** PetDetailsTests - XCTestCase
+            - It has all the positive and negative test caees of PetDetailsViewModel.                     

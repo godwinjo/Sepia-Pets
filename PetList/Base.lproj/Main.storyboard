@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -62,6 +63,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAZ-eb-cve" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1071.0144927536232" y="-320.08928571428572"/>
+        </scene>
+        <!--Pet Details View Controller-->
+        <scene sceneID="Vwa-Yv-P1k">
+            <objects>
+                <viewController storyboardIdentifier="PetDetailsViewController" id="m8R-cE-FHz" customClass="PetDetailsViewController" customModule="PetList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mms-1D-N4U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkl-7B-3Kn">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Iov-Sj-r1N"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Mkl-7B-3Kn" firstAttribute="leading" secondItem="Iov-Sj-r1N" secondAttribute="leading" id="AeT-pe-0zt"/>
+                            <constraint firstItem="Mkl-7B-3Kn" firstAttribute="trailing" secondItem="Iov-Sj-r1N" secondAttribute="trailing" id="SYk-b7-AH1"/>
+                            <constraint firstItem="Mkl-7B-3Kn" firstAttribute="top" secondItem="Iov-Sj-r1N" secondAttribute="top" id="b8W-DN-93Z"/>
+                            <constraint firstAttribute="bottom" secondItem="Mkl-7B-3Kn" secondAttribute="bottom" id="rUf-ja-rVN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webViewPetDetails" destination="Mkl-7B-3Kn" id="bEA-ah-zEb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="He5-G6-d57" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1779.7101449275365" y="-320.08928571428572"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8Iz-9l-OCQ">

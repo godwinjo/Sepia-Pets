@@ -11,6 +11,7 @@ final class PetListTableViewController: UITableViewController {
     
     private enum Constants {
         static let cellIdentifier = "PetTableViewCell"
+        static let storyboardIdentifier = "PetDetailsViewController"
     }
     
     var viewModel: PetsListViewModeling?
@@ -35,6 +36,14 @@ final class PetListTableViewController: UITableViewController {
         let image = viewModel?.getImageFromUrl(imageUrl: petDetails.imageUrl ?? "")
         cell.setValues(petDetails: petDetails, image: image)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let petDetailsVc = self.storyboard?.instantiateViewController(withIdentifier: Constants.storyboardIdentifier) as? PetDetailsViewController,
+              let petDetails = viewModel?.pets?[indexPath.row] else { return }
+        let viewModel = PetDetailsViewModel(petDetails: petDetails)
+        petDetailsVc.viewModel = viewModel
+        navigationController?.pushViewController(petDetailsVc, animated: true)
     }
 
 }
