@@ -1,0 +1,89 @@
+//
+//  PetListTests.swift
+//  PetListTests
+//
+//  Created by Godwin on 26/12/22.
+//
+
+import XCTest
+@testable import PetList
+
+class PetListTests: XCTestCase {
+    
+    var viewModel: PetListViewModel?
+
+    override func setUpWithError() throws {
+        viewModel = PetListViewModel()
+    }
+
+    override func tearDownWithError() throws {
+        viewModel = nil
+    }
+    
+    func testgetUrlFromFileSuccess() {
+        let fileName = "pets_list"
+        let extensionName = ".json"
+        let url = viewModel?.getUrlFromFile(fileName: fileName, extensionName: extensionName)
+        XCTAssertNotNil(url)
+    }
+    
+    func testgetUrlFromFileFailure() {
+        let fileName = "pets"
+        let extensionName = ".json"
+        let data = viewModel?.getUrlFromFile(fileName: fileName, extensionName: extensionName)
+        XCTAssertNil(data)
+    }
+    
+    func testGetDataFromUrlSuccess() {
+        let fileName = "pets_list"
+        let extensionName = ".json"
+        guard let url = viewModel?.getUrlFromFile(fileName: fileName, extensionName: extensionName) else { return }
+        let data = viewModel?.getDataFromUrl(url: url)
+        XCTAssertNotNil(data)
+    }
+    
+    func testGetDataFromUrlFailure() {
+        guard let url = URL(string: "http://abc/abc") else { return }
+        let data = viewModel?.getDataFromUrl(url: url)
+        XCTAssertNil(data)
+    }
+    
+    func testDownloadImageFromUrlSuccess() {
+        guard let imageUrl = viewModel?.pets?[0].imageUrl else { return }
+        let image = viewModel?.downloadImageFromUrl(imageUrl: imageUrl)
+        XCTAssertNotNil(image)
+    }
+    
+    func testDownloadImageFromUrlFailure() {
+        let imageUrl = "http://abc/abc"
+        let image = viewModel?.downloadImageFromUrl(imageUrl: imageUrl)
+        XCTAssertNil(image)
+    }
+    
+    func testGetPetListSuccess() {
+        let expectation = self.expectation(description: "getting items from service")
+        viewModel?.getPetsList( fileName: "pets_list", extensionName: ".json", completion: { pet in
+            XCTAssertNotNil(pet)
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 1) { (error) in
+            if let eror = error {
+                print(eror)
+            }
+        }
+    }
+    
+    func testGetPetListFailure() {
+        let expectation = self.expectation(description: "getting items from service")
+        viewModel?.getPetsList( fileName: "pets", extensionName: ".json", completion: { pet in
+            XCTAssertNil(pet)
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 1) { (error) in
+            if let eror = error {
+                print(eror)
+            }
+        }
+    }
+
+}
