@@ -11,7 +11,6 @@ protocol PetDetailsViewModeling {
     var urlRequest: URLRequest? { get }
 }
 
-
 final class PetDetailsViewModel {
     
     var petDetails: PetDetails?
@@ -26,7 +25,6 @@ final class PetDetailsViewModel {
         let urlRequest = URLRequest(url: url)
         return urlRequest
     }
-    
 }
 
 extension PetDetailsViewModel: PetDetailsViewModeling {

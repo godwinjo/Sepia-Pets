@@ -1,4 +1,6 @@
 # Sepia-Pets
+** Xcode Version - 13.4
+** Swift Version - 5
 
 ** PetDetails - Model Class
   ** Pet
@@ -22,6 +24,18 @@
              
         *func downloadImageFromUrl(imageUrl: String) -> UIImage?
             - For downloading the image from the given url.
+          
+        *func getConfigDetails(fileName: String, extensionName: String, completion: ((Config?)-> ())? = nil)
+            - To get the config details from json file.
+            
+        *func checkIfCurrentTimeIsBetween(startTime: String, endTime: String) -> Bool
+            - To check the current time is between given two times.
+            
+        *func getStartAndEntTime(workHours: String)-> (startTime: String, endTime: String)?
+            - To get the start and end time from the given workHours string.
+            
+        *checkIsThisWorkingHour(completion: ((Bool)-> ())? = nil)
+            - To chek whether the current time is working time and fetch the pets details from fetch pet call.
             
 ** PetListTableViewController - View class
         - For listing all pets details, like showing name and image of the pets in row wise.

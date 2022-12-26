@@ -19,6 +19,17 @@ final class PetListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = PetListViewModel()
+        viewModel?.checkThisWorkingHour(completion: { status in
+            if !status {
+                self.showAlert()
+            }
+        })
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "This not working hours", message: "Please use this only in working hours", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 
     // MARK: - Table view data source
